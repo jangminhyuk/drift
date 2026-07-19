@@ -1,0 +1,5 @@
+model_resnet1d.py is the RoNIN ResNet-1D architecture from the RoNIN project
+(Herath et al., "RoNIN: Robust Neural Inertial Navigation"). It is vendored
+here only to load the IMU encoder used by the adaptive module. See the official
+RoNIN repository for the source and its license, and download the pretrained
+checkpoint from there (place at checkpoints/ronin/checkpoint_gsn_latest.pt).

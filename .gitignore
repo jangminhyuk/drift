@@ -1,0 +1,21 @@
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+
+# C++ build output
+scripts/drekf_cpp/build/
+scripts/gnss_imu/cpp_kfgins/build/
+*.o
+
+# generated paper artifacts (regenerate with reproduce/*.py)
+/figures/
+/tables/
+research/dr_conclusions/figures_guideline_v5_paper/FIG_REGIMES_UWB.*
+
+# third-party RoNIN weights (download separately, see README)
+checkpoints/ronin/
+
+# misc
+.DS_Store

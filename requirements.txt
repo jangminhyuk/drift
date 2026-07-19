@@ -1,0 +1,8 @@
+# Figure/table reproduction (reproduce/*.py) — no GPU needed.
+numpy
+pandas
+matplotlib
+scipy
+#
+# Full reproduction (training + evaluation) additionally needs:
+#   torch, mamba-ssm, pybind11, cmake, eigen3  (see README)

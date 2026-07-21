@@ -10,7 +10,7 @@ import pathlib
 REPO = pathlib.Path(__file__).resolve().parents[1]
 script = REPO / 'research/dr_conclusions/scripts/fig_drift_guideline_v5_uwb.py'
 env = dict(os.environ, GUIDELINE_UNITS_CSV='guideline_units_alltdoa2_v47.csv',
-           FIG_SUFFIX='', FIG_STYLE='group')
+           FIG_SUFFIX='', FIG_STYLE='clean')
 subprocess.run([sys.executable, str(script)], env=env, check=True)
 src = REPO / 'research/dr_conclusions/figures_guideline_v5_paper/FIG_REGIMES_UWB'
 out = REPO / 'figures'

@@ -33,7 +33,7 @@ import pandas as pd
 # Paper style (2026-07-09): DejaVu Sans + the FIG_REGIMES_UWB palette so all
 # paper figures share one look (see research/dr_conclusions/scripts/
 # fig_drift_guideline_v5_uwb.py). Palette: adapter #e34948 / DR #2a78d6 /
-# DRiFt #4a3aa7 / baseline gray #898781 / ink #0b0b0b / chrome #c3c2b7.
+# WRAP #4a3aa7 / baseline gray #898781 / ink #0b0b0b / chrome #c3c2b7.
 plt.rcParams.update({
     'figure.facecolor': 'white',
     'font.family': 'sans-serif',
@@ -334,7 +334,7 @@ def plot_improvement(summary, fig_dir, include_cdc=True, strip_tac=False,
 
 # ------------------------------------------------------------------ #
 #  Plot 2b: Headline improvement figure (curated subset, publication)
-#  Flat bars sorted within three groups — DRiFt (adapter + DR),
+#  Flat bars sorted within three groups — WRAP (adapter + DR),
 #  Adapter-only (adapter, no DR), and the classical DR-only baseline —
 #  with short backbone tick labels and vertical group brackets on the left.
 # ------------------------------------------------------------------ #
@@ -353,7 +353,7 @@ def plot_headline_improvement(summary, fig_dir, out_name='improvement.pdf'):
 
     backbones = ['mamba', 'transformer', 'gru']
     # variant carries the color (backbone is named by the y-tick label):
-    # DRiFt violet / adapter red / DR blue — same semantics as FIG_REGIMES_UWB
+    # WRAP violet / adapter red / DR blue — same semantics as FIG_REGIMES_UWB
     drift_color, adapter_color, dr_only_color = '#4a3aa7', '#e34948', '#2a78d6'
 
     # Three contiguous blocks, each sorted by improvement (desc) so the group
@@ -369,7 +369,7 @@ def plot_headline_improvement(summary, fig_dir, out_name='improvement.pdf'):
     # rows: (value, color, tick_label, group_label)
     rows = []
     for p, v in drift:
-        rows.append((v, drift_color, PREDICTOR_LABELS.get(p, p), 'DRiFt'))
+        rows.append((v, drift_color, PREDICTOR_LABELS.get(p, p), 'WRAP'))
     for p, v in adapt:
         rows.append((v, adapter_color, PREDICTOR_LABELS.get(p, p), 'Adapter-only'))
     if dr_only is not None:
@@ -419,7 +419,7 @@ def plot_headline_improvement(summary, fig_dir, out_name='improvement.pdf'):
     for i, r in enumerate(rows):
         if r[3] is not None:
             groups.setdefault(r[3], []).append(i)
-    group_color = {'DRiFt': drift_color, 'Adapter-only': adapter_color}
+    group_color = {'WRAP': drift_color, 'Adapter-only': adapter_color}
     for gname, idxs in groups.items():
         lo_i, hi_i = min(idxs), max(idxs)
         gtext = 'Adapter-\nonly' if gname == 'Adapter-only' else gname
@@ -443,10 +443,10 @@ def plot_headline_improvement(summary, fig_dir, out_name='improvement.pdf'):
 def write_constellation_table(summary, fig_dir):
     const_names = sorted(set(ds['const_name'] for ds in summary['datasets']))
     spec = [('eskf', 'ESKF'), ('dr_eskf', 'DR-only'),
-            ('mamba_eskf', 'Adapter-only (Mamba)'), ('mamba_dr', 'DRiFt (Mamba)'),
-            ('gru_eskf', 'Adapter-only (GRU)'), ('gru_dr', 'DRiFt (GRU)'),
+            ('mamba_eskf', 'Adapter-only (Mamba)'), ('mamba_dr', 'WRAP (Mamba)'),
+            ('gru_eskf', 'Adapter-only (GRU)'), ('gru_dr', 'WRAP (GRU)'),
             ('transformer_eskf', 'Adapter-only (Transformer)'),
-            ('transformer_dr', 'DRiFt (Transformer)')]
+            ('transformer_dr', 'WRAP (Transformer)')]
     spec = [(k, l) for k, l in spec if k in summary['methods_run']]
     if not spec:
         print('  Skipping constellation table (no methods)')
@@ -479,7 +479,7 @@ def write_constellation_table(summary, fig_dir):
 
 # ------------------------------------------------------------------ #
 #  Plot 2d: Error-distribution figure (the headline "insight" figure)
-#  Position error vs percentile, pooled over all sequences. DRiFt is
+#  Position error vs percentile, pooled over all sequences. WRAP is
 #  lowest at every percentile (~30% reduction). Three interchangeable
 #  styles: 'curve' (quantile curve), 'dumbbell', or 'bars'.
 # ------------------------------------------------------------------ #
@@ -505,7 +505,7 @@ def plot_headline_error_levels(summary, fig_dir, style='curve', out_name=None):
     methods = [('ESKF', 'eskf', '#777777'),
                ('DR-only', 'dr_eskf', '#4878CF'),
                ('Adapter-only (Mamba)', 'mamba_eskf', '#2ca02c'),
-               ('DRiFt (Mamba)', 'mamba_dr', '#d95f02')]
+               ('WRAP (Mamba)', 'mamba_dr', '#d95f02')]
     arr = {lab: _pool(mk) for lab, mk, _ in methods}
     methods = [(lab, mk, c) for lab, mk, c in methods if len(arr[lab])]
     if len(methods) < 2:
@@ -513,7 +513,7 @@ def plot_headline_error_levels(summary, fig_dir, style='curve', out_name=None):
         return
     eskf_arr = arr[methods[0][0]]
     drift = methods[-1]
-    title = 'DRiFt lowers position error by ~30%, including the worst case'
+    title = 'WRAP lowers position error by ~30%, including the worst case'
 
     if style == 'curve':
         fig, ax = plt.subplots(figsize=(6.4, 4.3))
@@ -584,7 +584,7 @@ def plot_headline_error_levels(summary, fig_dir, style='curve', out_name=None):
 #  Plot 2e: Height tracking + vertical-error showcase (paper)
 #  One representative hard sequence: estimated height vs ground truth
 #  (top) and the vertical position error (bottom) for ESKF / Adapter-only
-#  / DRiFt. Shows DRiFt removing ESKF's systematic vertical bias.
+#  / WRAP. Shows WRAP removing ESKF's systematic vertical bias.
 # ------------------------------------------------------------------ #
 def plot_height_tracking(summary, fig_dir,
                          dataset_name='const4-trial6-tdoa2-traj3',
@@ -622,18 +622,18 @@ def plot_height_tracking(summary, fig_dir,
 
     gz = E['Xpo'][:, 2] - E['pos_error'][:, 2]      # ground-truth height
     tg = _t(E)
-    # GT ink / ESKF gray / adapter red / DRiFt violet (FIG_REGIMES_UWB palette)
+    # GT ink / ESKF gray / adapter red / WRAP violet (FIG_REGIMES_UWB palette)
     BK, GR, GN, OR = '#0b0b0b', '#898781', '#e34948', '#4a3aa7'
 
     handles = [Line2D([0], [0], color=BK, lw=2.6, label='Ground truth'),
                Line2D([0], [0], color=GR, lw=2.4, label='ESKF'),
                Line2D([0], [0], color=GN, lw=2.4, label='Adapter-only'),
-               Line2D([0], [0], color=OR, lw=2.4, label='DRiFt')]
+               Line2D([0], [0], color=OR, lw=2.4, label='WRAP')]
     hmax = max(float(gz.max()), float(E['Xpo'][:, 2].max()),
                float(A['Xpo'][:, 2].max()), float(F['Xpo'][:, 2].max()))
 
     if upper_only:
-        # Single panel: estimated height vs GT only (DRiFt = top overlay).
+        # Single panel: estimated height vs GT only (WRAP = top overlay).
         fig, ax1 = plt.subplots(figsize=(8.2, 3.7))
         ax1.plot(tg, gz, color=BK, lw=2.6, zorder=1)
         ax1.plot(_t(E), E['Xpo'][:, 2], color=GR, lw=1.4, alpha=0.9, zorder=2)
@@ -655,7 +655,7 @@ def plot_height_tracking(summary, fig_dir,
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8.2, 5.7), sharex=True,
                                    gridspec_kw=dict(height_ratios=[1.5, 1]))
-    # top: estimated height vs GT (DRiFt drawn last = top overlay)
+    # top: estimated height vs GT (WRAP drawn last = top overlay)
     ax1.plot(tg, gz, color=BK, lw=2.6, zorder=1)
     ax1.plot(_t(E), E['Xpo'][:, 2], color=GR, lw=1.4, alpha=0.9, zorder=2)
     ax1.plot(_t(A), A['Xpo'][:, 2], color=GN, lw=1.4, alpha=0.9, zorder=3)

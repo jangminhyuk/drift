@@ -1,6 +1,6 @@
-# DRiFt: Distributionally Robust + Adaptive Kalman Filtering
+# WRAP: Wasserstein-Robust Adaptive Plug-in for Robot Localization
 
-Code and precomputed results for the DRiFt paper. DRiFt combines a learned
+Code and precomputed results for the WRAP paper. WRAP combines a learned
 adaptive nominal-noise module (Mamba / GRU / Transformer backbone) with a
 Wasserstein distributionally-robust covariance layer, evaluated on UWB–IMU
 (UTIL dataset) and GNSS–INS (i2Nav / KF-GINS) localization.
@@ -45,7 +45,7 @@ Requires a GPU environment; extra dependencies beyond `requirements.txt`:
    (A prebuilt `kfgins_py*.so` for Linux/py3.10 is included; rebuild for other platforms.)
 2. Datasets: UTIL UWB (https://utiasdsl.github.io/util-uwb-dataset/) and i2Nav
    (https://github.com/i2Nav-WHU). Point the pipeline at them via the
-   `DRIFT_DATA_ROOT` / `DRIFT_SHARD_ROOT` environment variables.
+   `WRAP_DATA_ROOT` / `WRAP_SHARD_ROOT` environment variables.
 3. RoNIN encoder (third-party, required to load the UWB adapters): download the
    RoNIN ResNet checkpoint from the official RoNIN project and place it at
    `checkpoints/ronin/checkpoint_gsn_latest.pt`.

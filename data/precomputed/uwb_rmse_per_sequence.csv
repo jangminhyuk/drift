@@ -1,4 +1,4 @@
-sequence,constellation,tdoa,ESKF,DR-only,Adapter-only,DRiFt,Transformer-only,Transformer-DRiFt,GRU-only,GRU-DRiFt
+sequence,constellation,tdoa,ESKF,DR-only,Adapter-only,WRAP,Transformer-only,Transformer-WRAP,GRU-only,GRU-WRAP
 const1-trial1-tdoa2,const1,2,0.1083,0.1063,0.0603,0.0546,0.0710,0.0547,0.0571,0.0522
 const1-trial2-tdoa2,const1,2,0.1218,0.1207,0.0630,0.0609,0.0682,0.0579,0.0633,0.0564
 const1-trial3-tdoa2,const1,2,0.1086,0.1078,0.0734,0.0648,0.0786,0.0628,0.0730,0.0630

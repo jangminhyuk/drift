@@ -21,7 +21,7 @@ import numpy as np, pandas as pd
 
 ROOT = pathlib.Path('.')
 ART = ROOT / "research/dr_conclusions/artifacts"
-SHARDS = os.path.join(os.environ.get('DRIFT_SHARD_ROOT','shards'), "eval_table_v1")
+SHARDS = os.path.join(os.environ.get('WRAP_SHARD_ROOT','shards'), "eval_table_v1")
 CSV_DIR = ROOT / "dataset/flight-dataset/csv-data"
 
 T_UV = np.array([-0.01245, 0.00127, 0.0908])
@@ -136,7 +136,7 @@ for name in tab.index:
         "rmse_base": base,
         "pct_adapter": 100*(1 - tab.loc[name, "Adapter-only"]/base),
         "pct_dr_alone": 100*(1 - tab.loc[name, "DR-only"]/base),
-        "pct_both": 100*(1 - tab.loc[name, "DRiFt"]/base)})
+        "pct_both": 100*(1 - tab.loc[name, "WRAP"]/base)})
     print(f"{name}: ratio={ratio:.2f} H_fast={H_fast:+.2f} T={x_q99:.2f} "
           f"adp={rows[-1]['pct_adapter']:+.1f} dr={rows[-1]['pct_dr_alone']:+.1f} "
           f"both={rows[-1]['pct_both']:+.1f}")

@@ -16,17 +16,17 @@ matplotlib.use('Agg')
 import plot_8way as P
 
 SHARD_ROOT = os.environ.get('UWB_TABLE_SHARD_ROOT',
-                            os.path.join(os.environ.get('DRIFT_SHARD_ROOT','shards'), 'eval_table_v1'))  # bulk per-shard outputs
+                            os.path.join(os.environ.get('WRAP_SHARD_ROOT','shards'), 'eval_table_v1'))  # bulk per-shard outputs
 OUT_ROOT = os.environ.get('UWB_TABLE_OUT_ROOT',
                           'results/eval_table_v1')    # small deliverables (csv/tex/fig)
 FIG = os.path.join(OUT_ROOT, 'figures')
 os.makedirs(FIG, exist_ok=True)
 
 METHODS = [('eskf', 'ESKF'), ('dr_eskf', 'DR-only'),
-           ('mamba_eskf', 'Adapter-only'), ('mamba_dr', 'DRiFt')]
+           ('mamba_eskf', 'Adapter-only'), ('mamba_dr', 'WRAP')]
 if os.environ.get('UWB_TABLE_ALL_BACKBONES'):
-    METHODS += [('transformer_eskf', 'Transformer-only'), ('transformer_dr', 'Transformer-DRiFt'),
-                ('gru_eskf', 'GRU-only'), ('gru_dr', 'GRU-DRiFt')]
+    METHODS += [('transformer_eskf', 'Transformer-only'), ('transformer_dr', 'Transformer-WRAP'),
+                ('gru_eskf', 'GRU-only'), ('gru_dr', 'GRU-WRAP')]
 MKEYS = [m for m, _ in METHODS]                          # 4 main: CSV + LaTeX table
 # Also collect Transformer/GRU so the improvement plot can populate all backbones.
 ALL_MKEYS = MKEYS + ['transformer_eskf', 'transformer_dr', 'gru_eskf', 'gru_dr']

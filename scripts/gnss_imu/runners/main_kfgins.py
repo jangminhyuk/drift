@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(THIS_DIR, '..', 'data')))
 sys.path.insert(0, os.path.abspath(os.path.join(THIS_DIR, '..', 'cpp_kfgins')))
 
 RAW_DIR = os.environ.get('KFGINS_RAW_DIR',
-                         os.path.join(os.environ.get('DRIFT_DATA_ROOT','data'), 'i2nav_robot/raw'))
+                         os.path.join(os.environ.get('WRAP_DATA_ROOT','data'), 'i2nav_robot/raw'))
 
 # ADIS16465 IMU noise (i2Nav-Robot default; matches KF-GINS YAML config)
 _IMU_NOISE_ADIS16465 = {

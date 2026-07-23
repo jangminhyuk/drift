@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Fig. 2 - UWB height tracking on const4-trial6-tdoa2-traj3 (GT vs ESKF vs
-Adapter-only vs DRiFt). Reads committed slim trajectories under
+Adapter-only vs WRAP). Reads committed slim trajectories under
 data/precomputed/fig2_height/ and writes figures/height_tracking_C4_traj3_upper.pdf.
 No GPU / dataset / C++ needed."""
 import sys

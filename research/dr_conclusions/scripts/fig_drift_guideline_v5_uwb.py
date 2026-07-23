@@ -226,7 +226,7 @@ elif STYLE != "clean":
 # ALL sequences incl. manual flights (user 2026-07-12, v47 family — the
 # tail-supervised adapter now handles manuals, so no scope carve-out).
 db = d
-# order: DRiFt/purple first, then bias/red, then heavy-tailed/blue (user 2026-07-13)
+# order: WRAP/purple first, then bias/red, then heavy-tailed/blue (user 2026-07-13)
 GROUPS = [("drift", "Bias +\nheavy tails"), ("adaptive", "Bias-\ndominated"),
           ("dr", "Heavy-\ntailed")]
 DEPLOY = [("pct_adapter", C_ADP), ("pct_dr_alone", C_DR), ("pct_both", C_BOTH)]
@@ -256,9 +256,9 @@ for gi, (reg, gname) in enumerate(GROUPS):
 
 axb.axhline(0, color=INK, lw=1.6, zorder=3)
 axb.set_xticks([gi*(3*W + GAP) + di*W for gi in range(3) for di in range(3)])
-axb.set_xticklabels(["Adp", "DR", "DRiFt"]*3, fontsize=21)
+axb.set_xticklabels(["Adp", "DR", "WRAP"]*3, fontsize=21)
 axb.set_xlim(-0.75, 2*(3*W + GAP) + 2*W + 0.75)
-axb.set_ylim(-22, 68)   # v47: dr-region adp/DRiFt medians reach -16/-14
+axb.set_ylim(-22, 68)   # v47: dr-region adp/WRAP medians reach -16/-14
 axb.tick_params(labelsize=21)
 axb.set_ylabel("RMSE improvement vs baseline  (%)", fontsize=25, color=INK)
 axb.grid(axis="y", color="#e1e0d9", lw=1.0, zorder=0)

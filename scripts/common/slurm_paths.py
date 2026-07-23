@@ -9,13 +9,13 @@ REPO_ROOT = os.path.abspath(
 )
 
 # Raw and preprocessed dataset on a large data allocation
-DATA_RAW_ROOT     = os.path.join(os.environ.get('DRIFT_DATA_ROOT','data'), 'i2nav_robot/raw')
-DATA_PREPROC_ROOT = os.path.join(os.environ.get('DRIFT_DATA_ROOT','data'), 'i2nav_robot/preprocessed')
-CACHE_GNSS_ROOT   = os.path.join(os.environ.get('DRIFT_DATA_ROOT','data'), 'i2nav_robot/cache_gnss')
+DATA_RAW_ROOT     = os.path.join(os.environ.get('WRAP_DATA_ROOT','data'), 'i2nav_robot/raw')
+DATA_PREPROC_ROOT = os.path.join(os.environ.get('WRAP_DATA_ROOT','data'), 'i2nav_robot/preprocessed')
+CACHE_GNSS_ROOT   = os.path.join(os.environ.get('WRAP_DATA_ROOT','data'), 'i2nav_robot/cache_gnss')
 
 # Results and checkpoints on /projects (longer retention)
-RESULTS_GNSS_ROOT = os.path.join(os.environ.get('DRIFT_GNSS_ROOT','gnss_out'), 'results')
-CKPT_GNSS_ROOT    = os.path.join(os.environ.get('DRIFT_GNSS_ROOT','gnss_out'), 'ckpts')
+RESULTS_GNSS_ROOT = os.path.join(os.environ.get('WRAP_GNSS_ROOT','gnss_out'), 'results')
+CKPT_GNSS_ROOT    = os.path.join(os.environ.get('WRAP_GNSS_ROOT','gnss_out'), 'ckpts')
 
 # External reference repos (git clones under the repo)
 KFGINS_REPO  = os.path.join(REPO_ROOT, 'external', 'KF-GINS')
@@ -26,4 +26,4 @@ I2NAV_REPO   = os.path.join(REPO_ROOT, 'external', 'i2Nav-Robot')
 DREKF_CPP_BUILD = os.path.join(REPO_ROOT, 'scripts', 'drekf_cpp', 'build')
 
 # Conda environment
-CONDA_ENV = os.path.join(os.environ.get('DRIFT_STORE','store'), 'conda_envs/dreskf')
+CONDA_ENV = os.path.join(os.environ.get('WRAP_STORE','store'), 'conda_envs/dreskf')

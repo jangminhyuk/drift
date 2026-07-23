@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """GNSS figure - F_per_seq_improvement (i2Nav per-sequence RMSE improvement,
-KF-GINS baseline vs adapter vs DRiFt). Reads the committed summary JSON at
+KF-GINS baseline vs adapter vs WRAP). Reads the committed summary JSON at
 data/precomputed/gnss/figures/summary_both_subsets.json and writes
 figures/F_per_seq_improvement.pdf. Only the per-sequence figure is produced
 here (the trajectory / error-time panels need raw .npz not shipped in this
@@ -9,7 +9,7 @@ import os
 import sys
 import pathlib
 REPO = pathlib.Path(__file__).resolve().parents[1]
-os.environ['DRIFT_GNSS_DATA'] = str(REPO / 'data/precomputed/gnss')
+os.environ['WRAP_GNSS_DATA'] = str(REPO / 'data/precomputed/gnss')
 import matplotlib
 matplotlib.use('Agg')
 sys.path.insert(0, str(REPO / 'scripts/gnss_imu/runners'))

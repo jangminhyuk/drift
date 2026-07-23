@@ -8,7 +8,7 @@ import pandas as pd
 REPO = pathlib.Path(__file__).resolve().parents[1]
 v = pd.read_csv(REPO / 'data/precomputed/uwb_rmse_per_sequence.csv')
 v = v[v.tdoa == 2]
-METH = ['ESKF', 'DR-only', 'Adapter-only', 'DRiFt']
+METH = ['ESKF', 'DR-only', 'Adapter-only', 'WRAP']
 
 
 def row(label, g):
@@ -24,7 +24,7 @@ L = [r'\begin{table}[t]', r'\centering',
      r'\caption{UWB (TDOA2) localization RMSE (m), mean\,$\pm$\,std over all '
      r'sequences per anchor constellation. Adapter = Mamba.}',
      r'\label{tab:uwb_rmse}', r'\begin{tabular}{lcccc}', r'\toprule',
-     'Const. & ESKF & DR-only & Adapter-only & DRiFt \\\\', r'\midrule']
+     'Const. & ESKF & DR-only & Adapter-only & WRAP \\\\', r'\midrule']
 for c in ['const1', 'const2', 'const3', 'const4']:
     L.append(row('\\#' + c[-1], v[v.constellation == c]))
 L += [r'\bottomrule', r'\end{tabular}', r'\end{table}']

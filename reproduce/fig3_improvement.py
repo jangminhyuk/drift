@@ -14,9 +14,9 @@ import plot_8way as P
 v = pd.read_csv(REPO / 'data/precomputed/uwb_rmse_per_sequence.csv')
 v = v[v.tdoa == 2]
 COL = {'eskf': 'ESKF', 'dr_eskf': 'DR-only', 'mamba_eskf': 'Adapter-only',
-       'mamba_dr': 'DRiFt', 'transformer_eskf': 'Transformer-only',
-       'transformer_dr': 'Transformer-DRiFt', 'gru_eskf': 'GRU-only',
-       'gru_dr': 'GRU-DRiFt'}
+       'mamba_dr': 'WRAP', 'transformer_eskf': 'Transformer-only',
+       'transformer_dr': 'Transformer-WRAP', 'gru_eskf': 'GRU-only',
+       'gru_dr': 'GRU-WRAP'}
 datasets = []
 for _, r in v.iterrows():
     datasets.append({

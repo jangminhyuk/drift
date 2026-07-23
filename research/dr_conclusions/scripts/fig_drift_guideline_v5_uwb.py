@@ -82,7 +82,7 @@ d["grp_obs"] = np.array(["neither", "adaptive", "dr", "drift"])[gsc.argmax(1)]
 
 fig, (axa, axb) = plt.subplots(
     1, 2, figsize=(24, 8.2), constrained_layout=True,
-    gridspec_kw={"width_ratios": [1.25, 1.0]})
+    gridspec_kw={"width_ratios": [1.25, 1.0], "wspace": 0.08})
 
 # ============================ (a) decision map ============================
 XL, XR, YB, YT = -1.02, 1.9, 0.3, 4.2
